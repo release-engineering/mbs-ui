@@ -2,21 +2,21 @@
 
 <h2 class="title">Modules</h2>
 
-<table class="table table-hover table-bordered" infinite-scroll (scrolled)="onScrollDown()">
+<table class="table table-responsive-sm table-hover table-bordered" infinite-scroll (scrolled)="onScrollDown()">
   <thead>
-    <td>ID</td>
-    <td>Name</td>
-    <td>Stream</td>
-    <td>Version</td>
-    <td>Owner</td>
+    <td scope="col">ID</td>
+    <td scope="col">Name</td>
+    <td scope="col">Stream</td>
+    <td scope="col">Version</td>
+    <td scope="col">Owner</td>
   </thead>
   <tbody>
     <tr *ngFor="let module of modules">
-      <td>{{ module.id }}</td>
-      <td>{{ module.name }}</td>
-      <td>{{ module.stream }}</td>
-      <td>{{ module.version }}</td>
-      <td>{{ module.owner }}</td>
+      <td scope="row">{{ module.id }}</td>
+      <td scope="row">{{ module.name }}</td>
+      <td scope="row">{{ module.stream }}</td>
+      <td scope="row">{{ module.version }}</td>
+      <td scope="row">{{ module.owner }}</td>
     </tr>
   </tbody>
 </table>
