@@ -12,7 +12,7 @@ import { MbsModulesApi, MbsModule } from '../mbs';
 export class ModulesComponent implements OnInit {
 
   modules: Array<MbsModule> = [];
-  currentPage: number = 1;
+  currentPage: number = 0;
   loading: boolean = false;
   exhausted: boolean = false;
 
@@ -25,11 +25,11 @@ export class ModulesComponent implements OnInit {
   getModules(): void {
     if (!this.exhausted && !this.loading) {
       this.loading = true;
+      this.currentPage += 1;
       this.moduleService.getModules(this.currentPage).subscribe(
         data => {
           if (data.items.length) {
             this.modules = this.modules.concat(data.items);
-            this.currentPage += 1;
           } else {
             this.exhausted = true;
           }
