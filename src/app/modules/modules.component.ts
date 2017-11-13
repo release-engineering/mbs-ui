@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgProgress } from 'ngx-progressbar';
 
 import { ModuleService } from '../module.service';
 import { MbsModulesApi, MbsModule } from '../mbs';
@@ -16,7 +17,8 @@ export class ModulesComponent implements OnInit {
   loading: boolean = false;
   exhausted: boolean = false;
 
-  constructor(private moduleService: ModuleService) { }
+  constructor(public ngProgress: NgProgress,
+              private moduleService: ModuleService) { }
 
   ngOnInit() {
     this.getModules();
