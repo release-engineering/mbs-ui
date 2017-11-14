@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgProgress } from 'ngx-progressbar';
 
-import { ModuleService } from '../module.service';
-import { MbsModulesApi, MbsModule } from '../mbs';
+import { ModuleService } from 'mbs/services/module.service';
+import { MbsModulesApi, MbsModule } from 'mbs/types/mbs.type';
 
 
 @Component({

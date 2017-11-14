@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { MbsModulesApi, MbsModule } from './mbs';
+import { MbsModulesApi, MbsModule } from 'mbs/types/mbs.type';
 
 
 @Injectable()
