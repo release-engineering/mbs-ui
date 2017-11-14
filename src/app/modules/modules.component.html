@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let module of modules">
-      <td scope="row">{{ module.id }}</td>
+      <td scope="row"><a [routerLink]="['/module', module.id]">{{ module.id }}</a></td>
       <td scope="row">{{ module.name }}</td>
       <td scope="row">{{ module.stream }}</td>
       <td scope="row">{{ module.version }}</td>

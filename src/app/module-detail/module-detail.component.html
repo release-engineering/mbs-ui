@@ -1,0 +1,62 @@
+<ng-progress [thick]="true"></ng-progress>
+
+<span *ngIf="module">
+  <h2 class="title">{{ title }}</h2>
+
+  <table class="table table-responsive-sm table-hover table-bordered">
+    <thead>
+      <td scope="col">Property</td>
+      <td scope="col">Value</td>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">ID</td>
+        <td scope="row">{{ module.id }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Name</td>
+        <td scope="row">{{ module.name }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Owner</td>
+        <td scope="row">{{ module.owner }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Rebuild Strategy</td>
+        <td scope="row">{{ module.rebuild_strategy }}</td>
+      </tr>
+      <tr>
+        <td scope="row">State</td>
+        <td scope="row">{{ module.state_name }}</td>
+      </tr>
+      <tr>
+        <td scope="row">State Reason</td>
+        <td scope="row">{{ module.state_reason }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Stream</td>
+        <td scope="row">{{ module.stream }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Components</td>
+        <td scope="row">Figure me out</td>
+      </tr>
+      <tr>
+        <td scope="row">Time Submitted</td>
+        <td scope="row">{{ module.time_submitted }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Time Modifed</td>
+        <td scope="row">{{ module.time_modified }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Time Completed</td>
+        <td scope="row">{{ module.time_completed }}</td>
+      </tr>
+      <tr>
+        <td scope="row">Version</td>
+        <td scope="row">{{ module.version }}</td>
+      </tr>
+    </tbody>
+  </table>
+</span>

@@ -12,12 +12,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ModulesComponent } from './modules/modules.component';
 import { ModuleService } from './module.service';
+import { ModuleComponentsComponent } from './module-components/module-components.component';
+import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModulesComponent
+    ModulesComponent,
+    ModuleComponentsComponent,
+    ModuleDetailComponent
   ],
   imports: [
     BrowserModule,
