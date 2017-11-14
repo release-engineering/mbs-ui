@@ -3,8 +3,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 
-import { ModuleService } from '../module.service';
-import { MbsModule } from '../mbs';
+import { ModuleService } from 'mbs/services/module.service';
+import { MbsModule } from 'mbs/types/mbs.type';
 
 
 @Component({

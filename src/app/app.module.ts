@@ -8,12 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ModulesComponent } from './modules/modules.component';
-import { ModuleService } from './module.service';
-import { ModuleComponentsComponent } from './module-components/module-components.component';
-import { ModuleDetailComponent } from './module-detail/module-detail.component';
+import { AppRoutingModule } from 'app-routing.module';
+import { AppComponent } from 'app.component';
+import { ModulesComponent } from 'mbs/modules/modules.component';
+import { ModuleService } from 'mbs/services/module.service';
+import { ModuleComponentsComponent } from 'mbs/module-components/module-components.component';
+import { ModuleDetailComponent } from 'mbs/module-detail/module-detail.component';
 
 
 @NgModule({
