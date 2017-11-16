@@ -15,7 +15,6 @@ import { MbsModule } from 'mbs/types/mbs.type';
 export class ModuleDetailComponent implements OnInit {
 
   module: MbsModule;
-  title: string;
   constructor(private route: ActivatedRoute, private moduleService: ModuleService) { }
 
   ngOnInit() {
@@ -32,12 +31,6 @@ export class ModuleDetailComponent implements OnInit {
     )
   }
 
-  getModuleTitle(): string {
-    if (this.module.koji_tag) {
-      return this.module.koji_tag;
-    } else {
-      return 'Module #' + this.module.id;
     }
   }
-
 }
