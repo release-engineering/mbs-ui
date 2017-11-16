@@ -8,7 +8,7 @@
     <td scope="col">Name</td>
     <td scope="col">Stream</td>
     <td scope="col">Version</td>
-    <td scope="col">Owner</td>
+    <td scope="col">State</td>
   </thead>
   <tbody>
     <tr *ngFor="let module of modules">
@@ -16,7 +16,7 @@
       <td scope="row">{{ module.name }}</td>
       <td scope="row">{{ module.stream }}</td>
       <td scope="row">{{ module.version }}</td>
-      <td scope="row">{{ module.owner }}</td>
+      <td scope="row">{{ module.state_name }}</td>
     </tr>
   </tbody>
 </table>
