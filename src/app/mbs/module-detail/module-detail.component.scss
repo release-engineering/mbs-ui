@@ -2,3 +2,97 @@ table tbody td:first-child {
     width: 30%;
 }
 
+ul.build-tracker {
+    // Set the padding so the list takes up all the content in the DOM that
+    // it graphically represents
+    padding: 0 0 65px 0;
+    // Provide adequate spacing between the title and table
+    margin: 1rem 0 1.5rem 0;
+
+    li {
+        // This number multiplied by the number of list items must equal to
+        // 100% so it can take up the whole container
+        width: 20%;
+        list-style-type: none;
+        // Makes the list look inline
+        float: left;
+        position: relative;
+        // Align the text with the icons
+        text-align: center;
+    }
+
+    li:before {
+        font-family: FontAwesome;
+        content: '\f10c';
+        font-size: 30px;
+        color: #cc0000;
+        line-height: 0.8;
+        // Hide the line behind it
+        background-color: #ffffff;
+        // the size is tweaked so that it is slightly smaller then the icon
+        // size so the pulse doesn't show any white
+        width: 25px;
+        height: 23px;
+        // Make the icon act as a block so that the text is displayed below
+        // it and not next to it
+        display: block;
+        // Center the icon and have the text 5 px below it
+        margin: 0 auto 5px;
+    }
+
+    li:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: #343a40;
+        top: 12px;
+        left: -50%;
+        // Put it behind the symbol
+        z-index: -1;
+    }
+
+    // Landscape phones and larger
+    @media (min-width: 767px) {
+        padding: 10px 0 80px 0;
+        margin: 3rem 0 3rem 0;
+        li:before {
+            font-size: 50px;
+            width: 42.5px;
+            height: 40px;
+            line-height: 0.8;
+            margin: 0 auto 15px;
+        }
+
+        li:after {
+            top: 20px;
+        }
+    }
+
+    li:first-child:after {
+        content: none;
+    }
+
+    li.build-tracker-step-done:before {
+        content: '\f05d';
+    }
+
+    li.build-tracker-step-active:before {
+        // Settings so that we can pulse the icon
+        border-radius: 50%;
+        box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.7);
+        animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    }
+
+    li.build-tracker-failed:before {
+        content: '\f05c';
+    }
+}
+
+// Pulse the active icon
+@keyframes pulse {to {box-shadow: 0 0 0 15px rgba(204, 0, 0, 0);}}
+// Landscape phones and larger
+@media (min-width: 767px) {
+    @keyframes pulse {to {box-shadow: 0 0 0 25px rgba(204, 0, 0, 0);}}
+}
+
