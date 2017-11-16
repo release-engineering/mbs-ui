@@ -1,6 +1,8 @@
 <div class="container-fluid bg-dark">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-        <a class="navbar-brand" href="#" (click)="navbarCollapsed = true">Module Build Service</a>
+        <a class="navbar-brand d-none d-sm-block" href="#" (click)="navbarCollapsed = true">Module Build Service</a>
+        <!-- Only show "MBS" on extra small screens -->
+        <a class="navbar-brand d-block d-sm-none" href="#" (click)="navbarCollapsed = true">MBS</a>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed"
             [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
