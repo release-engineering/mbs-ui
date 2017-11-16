@@ -8,7 +8,7 @@ import { MbsModulesApi, MbsModule } from 'mbs/types/mbs.type';
 @Injectable()
 export class ModuleService {
 
-  private readonly mbsUrl: string = 'http://127.0.0.1:5000/module-build-service/1/'
+  private readonly mbsUrl: string = 'https://mbs.fedoraproject.org/module-build-service/1/'
   constructor(private http: HttpClient) { }
 
   getModules (page: number = 1): Observable<MbsModulesApi> {
