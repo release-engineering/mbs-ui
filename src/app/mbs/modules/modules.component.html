@@ -2,7 +2,7 @@
 
 <h2 class="title">Modules</h2>
 
-<table class="table table-responsive-sm table-hover table-bordered" infinite-scroll (scrolled)="onScrollDown()">
+<table *ngIf="modules.length || exhausted" class="table table-responsive-sm table-hover table-bordered" infinite-scroll (scrolled)="onScrollDown()">
   <thead>
     <td scope="col">ID</td>
     <td scope="col">Name</td>
