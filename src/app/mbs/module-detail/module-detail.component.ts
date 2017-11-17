@@ -16,6 +16,8 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
 
   module: MbsModule;
   interval: any;
+  num_built_components: number;
+  num_components: number;
   constructor(private route: ActivatedRoute, private moduleService: ModuleService) { }
 
   ngOnInit() {
@@ -36,6 +38,16 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
         moduleObservable.subscribe(
           data => {
             this.module = data;
+            var num_built_components: number = 0;
+            var num_components: number = 0;
+            for (var component in this.module.tasks.rpms) {
+              num_components += 1;
+              if (this.module.tasks.rpms[component].state == 1) {
+                num_built_components += 1;
+              }
+            }
+            this.num_built_components = num_built_components;
+            this.num_components = num_components;
           },
           error => {
             console.log(error);
