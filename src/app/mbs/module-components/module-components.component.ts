@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgProgress } from 'ngx-progressbar';
 
 import { ModuleService } from 'mbs/services/module.service';
-import { MbsComponentsApi, MbsComponent } from 'mbs/types/mbs.type';
+import { MbsComponent } from 'mbs/types/mbs.type';
 
 
 @Component({

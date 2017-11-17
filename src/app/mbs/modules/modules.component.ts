@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgProgress } from 'ngx-progressbar';
 
 import { ModuleService } from 'mbs/services/module.service';
-import { MbsModulesApi, MbsModule } from 'mbs/types/mbs.type';
+import { MbsModuleShort } from 'mbs/types/mbs.type';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { MbsModulesApi, MbsModule } from 'mbs/types/mbs.type';
 })
 export class ModulesComponent implements OnInit {
 
-  modules: Array<MbsModule> = [];
+  modules: Array<MbsModuleShort> = [];
   currentPage: number = 0;
   loading: boolean = false;
   exhausted: boolean = false;

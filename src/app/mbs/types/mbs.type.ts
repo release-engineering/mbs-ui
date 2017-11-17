@@ -14,22 +14,25 @@ interface MbsApi {
     meta: MbsMetaApi;
 }
 
-export interface MbsModule {
+export interface MbsModuleShort {
     id: number;
-    koji_tag: string;
     name: string;
+    state: number;
+    state_name: string;
+    stream: string;
+    version: string;
+}
+
+export interface MbsModule extends MbsModuleShort {
+    koji_tag: string;
     owner: string;
     rebuild_strategy: string;
     scmurl: string | undefined;
-    state: number;
-    state_name: string;
     state_reason: string | undefined;
-    stream: string;
     tasks: any;
     time_completed: string | undefined;
     time_modified: string | undefined;
     time_submitted: string;
-    version: string;
 }
 
 export interface MbsComponent {
@@ -42,8 +45,8 @@ export interface MbsComponent {
     task_id: number;
 }
 
-export interface MbsModulesApi extends MbsApi {
-    items: Array<MbsModule>
+export interface MbsModulesShortApi extends MbsApi {
+    items: Array<MbsModuleShort>
 }
 
 export interface MbsComponentsApi extends MbsApi {
