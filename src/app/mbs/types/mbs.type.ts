@@ -32,6 +32,20 @@ export interface MbsModule {
     version: string;
 }
 
+export interface MbsComponent {
+    id: number;
+    format: string;
+    module_build: number;
+    package: string;
+    state: number;
+    state_name: string;
+    task_id: number;
+}
+
 export interface MbsModulesApi extends MbsApi {
     items: Array<MbsModule>
+}
+
+export interface MbsComponentsApi extends MbsApi {
+    items: Array<MbsComponent>;
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { MbsModulesApi, MbsModule } from 'mbs/types/mbs.type';
+import { MbsModulesApi, MbsModule, MbsComponentsApi, MbsComponent } from 'mbs/types/mbs.type';
 
 
 @Injectable()
@@ -17,5 +17,13 @@ export class ModuleService {
 
   getModule (id: number): Observable<MbsModule> {
     return this.http.get<MbsModule>(this.mbsUrl + 'module-builds/' + id);
+  }
+
+  getComponents (page: number = 1): Observable<MbsComponentsApi> {
+    return this.http.get<MbsComponentsApi>(this.mbsUrl + 'component-builds/?per_page=40&page=' + page);
+  }
+
+  getComponent (id: number): Observable<MbsComponent> {
+    return this.http.get<MbsComponent>(this.mbsUrl + 'component-builds/' + id);
   }
 }

@@ -1,3 +1,24 @@
-<p>
-  modulecomponents works!
-</p>
+<ng-progress [thick]="true"></ng-progress>
+
+<h2 class="title">Components</h2>
+
+<table *ngIf="components.length || exhausted" class="table table-responsive-sm table-hover table-bordered" infinite-scroll (scrolled)="onScrollDown()">
+  <thead>
+    <td scope="col">Module Build</td>
+    <td scope="col">Package</td>
+    <td scope="col">Task ID</td>
+    <td scope="col">State</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let component of components">
+      <td scope="row"><a [routerLink]="['/module', component.module_build]">{{ component.module_build }}</a></td>
+      <td scope="row">{{ component.package }}</td>
+      <td scope="row">
+        <a href="{{ koji_url + 'taskinfo?taskID=' + component.task_id }}" target="_blank">
+          {{ component.task_id }}
+        </a>
+      </td>
+      <td scope="row">{{ component.state_name }}</td>
+    </tr>
+  </tbody>
+</table>
