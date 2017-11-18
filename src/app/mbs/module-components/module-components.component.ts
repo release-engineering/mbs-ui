@@ -14,7 +14,7 @@ export class ModuleComponentsComponent implements OnInit {
 
   readonly koji_url: string = 'https://koji.fedoraproject.org/koji/';
   components: Array<MbsComponent> = [];
-  currentPage: number = 0;
+  currentPage: number = 1;
   loading: boolean = false;
   exhausted: boolean = false;
 
@@ -28,20 +28,22 @@ export class ModuleComponentsComponent implements OnInit {
   getComponents(): void {
     if (!this.exhausted && !this.loading) {
       this.loading = true;
-      this.currentPage += 1;
       this.moduleService.getComponents(this.currentPage).subscribe(
         data => {
           if (data.items.length) {
             this.components = this.components.concat(data.items);
+            this.currentPage += 1;
           } else {
             this.exhausted = true;
           }
         },
         error => {
           console.log(error);
+        },
+        () => {
+          this.loading = false;
         }
       );
-      this.loading = false;
     }
   }
 

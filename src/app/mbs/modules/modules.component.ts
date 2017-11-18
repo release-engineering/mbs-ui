@@ -13,7 +13,7 @@ import { MbsModuleShort } from 'mbs/types/mbs.type';
 export class ModulesComponent implements OnInit {
 
   modules: Array<MbsModuleShort> = [];
-  currentPage: number = 0;
+  currentPage: number = 1;
   loading: boolean = false;
   exhausted: boolean = false;
 
@@ -27,20 +27,22 @@ export class ModulesComponent implements OnInit {
   getModules(): void {
     if (!this.exhausted && !this.loading) {
       this.loading = true;
-      this.currentPage += 1;
       this.moduleService.getModules(this.currentPage).subscribe(
         data => {
           if (data.items.length) {
             this.modules = this.modules.concat(data.items);
+            this.currentPage += 1;
           } else {
             this.exhausted = true;
           }
         },
         error => {
           console.log(error);
+        },
+        () => {
+          this.loading = false;
         }
       );
-      this.loading = false;
     }
   }
 
