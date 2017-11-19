@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NgProgress } from 'ngx-progressbar';
 
+import { BaseListComponent } from 'mbs/base-components/base-list.component';
 import { ModuleService } from 'mbs/services/module.service';
 import { MbsComponent } from 'mbs/types/mbs.type';
 
@@ -10,25 +12,30 @@ import { MbsComponent } from 'mbs/types/mbs.type';
   templateUrl: './module-components.component.html',
   styleUrls: ['./module-components.component.scss']
 })
-export class ModuleComponentsComponent implements OnInit {
+export class ModuleComponentsComponent extends BaseListComponent implements OnInit {
 
   readonly koji_url: string = 'https://koji.fedoraproject.org/koji/';
   components: Array<MbsComponent> = [];
-  currentPage: number = 1;
-  loading: boolean = false;
-  exhausted: boolean = false;
 
-  constructor(public ngProgress: NgProgress,
-              private moduleService: ModuleService) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              public ngProgress: NgProgress,
+              private moduleService: ModuleService) {super();}
 
   ngOnInit() {
-    this.getComponents();
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.processRouteParams(params);
+      this.components = [];
+      this.exhausted = false;
+      this.currentPage = 1;
+      this.getComponents();
+    })
   }
 
   getComponents(): void {
     if (!this.exhausted && !this.loading) {
       this.loading = true;
-      this.moduleService.getComponents(this.currentPage).subscribe(
+      this.moduleService.getComponents(this.currentPage, this.orderBy, this.orderDirection).subscribe(
         data => {
           if (data.items.length) {
             this.components = this.components.concat(data.items);

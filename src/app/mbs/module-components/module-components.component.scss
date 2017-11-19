@@ -1,7 +1,9 @@
-table thead td {
-    width: 20%;
-}
-
-table thead td:nth-child(2) {
-    width: 40%;
+table thead {
+    th {
+        width: 15%;
+        white-space: nowrap;
+    }
+    th:nth-child(3) {
+        width: 25%;
+    }
 }

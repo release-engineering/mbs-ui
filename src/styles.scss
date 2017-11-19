@@ -13,10 +13,30 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 }
 }
 
-table {
-    thead {
-        td {
-            font-weight: bold;
+table.mbs-list-table thead {
+    th {
+        a {
+            text-decoration: none;
+            color: #212529;
+            display:inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a.orderAsc:after {
+            font-family: FontAwesome;
+            content: '\f077';
+            font-weight: lighter;
+            display:inline-block;
+        }
+
+        a.orderDesc:after {
+            font-family: FontAwesome;
+            content: '\f078';
+            font-weight: lighter;
+            display:inline-block;
         }
     }
 }

@@ -2,15 +2,19 @@
 
 <h2 class="title">Components</h2>
 
-<table *ngIf="components.length || exhausted" class="table table-responsive-sm table-hover table-bordered" infinite-scroll (scrolled)="onScrollDown()">
+<table class="table table-responsive-sm table-hover table-bordered mbs-list-table" infinite-scroll (scrolled)="onScrollDown()">
   <thead>
-    <td scope="col">Module Build</td>
-    <td scope="col">Package</td>
-    <td scope="col">Task ID</td>
-    <td scope="col">State</td>
+    <th *ngFor="let header of ['ID', 'Module Build', 'Package', 'Task ID', 'State']" scope="col">
+      <a *ngIf="header != 'Module Build'" [routerLink]="['/components', {'orderBy': header.toLowerCase().replace(' ', '_'), 'orderDirection': getOrderDirection(header)}]"
+          [ngClass]="getArrowClass(header)">
+        {{ header }}
+      </a>
+      <span *ngIf="header == 'Module Build'">{{ header }}</span>
+    </th>
   </thead>
   <tbody>
     <tr *ngFor="let component of components">
+      <td scope="row">{{ component.id }}</td>
       <td scope="row"><a [routerLink]="['/module', component.module_build]">{{ component.module_build }}</a></td>
       <td scope="row">{{ component.package }}</td>
       <td scope="row">

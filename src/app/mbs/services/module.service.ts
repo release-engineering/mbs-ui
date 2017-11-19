@@ -11,19 +11,31 @@ export class ModuleService {
   private readonly mbsUrl: string = 'https://mbs.fedoraproject.org/module-build-service/1/'
   constructor(private http: HttpClient) { }
 
-  getModules (page: number = 1): Observable<MbsModulesShortApi> {
-    return this.http.get<MbsModulesShortApi>(this.mbsUrl + 'module-builds/?short=true&per_page=40&page=' + page);
+  private getOrderKey(orderDirection: string): string {
+    if (orderDirection == 'desc') {
+      return 'order_desc_by';
+    } else {
+      return 'order_by';
+    }
   }
 
-  getModule (id: number): Observable<MbsModule> {
+  getModules(page: number = 1, orderBy: string = 'id', orderDirection: string = 'desc'): Observable<MbsModulesShortApi> {
+    let orderKey = this.getOrderKey(orderDirection);
+    let url = this.mbsUrl + 'module-builds/?short=true&per_page=40&page=' + page + '&' + orderKey + '=' + orderBy;
+    return this.http.get<MbsModulesShortApi>(url);
+  }
+
+  getModule(id: number): Observable<MbsModule> {
     return this.http.get<MbsModule>(this.mbsUrl + 'module-builds/' + id);
   }
 
-  getComponents (page: number = 1): Observable<MbsComponentsApi> {
-    return this.http.get<MbsComponentsApi>(this.mbsUrl + 'component-builds/?per_page=40&page=' + page);
+  getComponents(page: number = 1, orderBy: string = 'id', orderDirection: string = 'desc'): Observable<MbsComponentsApi> {
+    let orderKey = this.getOrderKey(orderDirection);
+    let url = this.mbsUrl + 'component-builds/?per_page=40&page=' + page + '&' + orderKey + '=' + orderBy;
+    return this.http.get<MbsComponentsApi>(url);
   }
 
-  getComponent (id: number): Observable<MbsComponent> {
+  getComponent(id: number): Observable<MbsComponent> {
     return this.http.get<MbsComponent>(this.mbsUrl + 'component-builds/' + id);
   }
 }
