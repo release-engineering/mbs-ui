@@ -13,7 +13,7 @@
     <li *ngIf="module.state_name == 'garbage'" class="build-tracker-failed">Garbage</li>
   </ul>
   <!-- Tracker if the build has succeeded -->
-  <ul *ngIf="module.state_name != 'failed'" class="build-tracker">
+  <ul *ngIf="module.state_name != 'failed' && module.state_name != 'garbage'" class="build-tracker">
     <li [ngClass]="{'build-tracker-step-done': module.state > 0, 'build-tracker-step-active': module.state == 0}">Init</li>
     <li [ngClass]="{'build-tracker-step-done': module.state > 1, 'build-tracker-step-active': module.state == 1}">Wait</li>
     <li [ngClass]="{'build-tracker-step-done': module.state > 2, 'build-tracker-step-active': module.state == 2}">Build</li>
