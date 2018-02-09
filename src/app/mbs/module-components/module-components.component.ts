@@ -5,6 +5,7 @@ import { NgProgress } from 'ngx-progressbar';
 import { BaseListComponent } from 'mbs/base-components/base-list.component';
 import { ModuleService } from 'mbs/services/module.service';
 import { MbsComponent } from 'mbs/types/mbs.type';
+import { environment } from 'mbs/../../environments/environment';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { MbsComponent } from 'mbs/types/mbs.type';
 })
 export class ModuleComponentsComponent extends BaseListComponent implements OnInit {
 
-  readonly koji_url: string = 'https://koji.fedoraproject.org/koji/';
+  readonly kojiUrl: string = environment.kojiUrl;
   components: Array<MbsComponent> = [];
 
   constructor(private router: Router,

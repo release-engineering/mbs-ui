@@ -18,7 +18,7 @@
       <td scope="row"><a [routerLink]="['/module', component.module_build]">{{ component.module_build }}</a></td>
       <td scope="row">{{ component.package }}</td>
       <td scope="row">
-        <a href="{{ koji_url + 'taskinfo?taskID=' + component.task_id }}" target="_blank">
+        <a href="{{ kojiUrl + 'taskinfo?taskID=' + component.task_id }}" target="_blank">
           {{ component.task_id }}
         </a>
       </td>

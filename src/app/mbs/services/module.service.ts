@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
+import { environment } from 'mbs/../../environments/environment';
 import { MbsModulesShortApi, MbsModule, MbsComponentsApi, MbsComponent } from 'mbs/types/mbs.type';
 
 
 @Injectable()
 export class ModuleService {
 
-  private readonly mbsUrl: string = 'https://mbs.fedoraproject.org/module-build-service/1/'
+  private readonly mbsUrl: string = environment.mbsUrl
   constructor(private http: HttpClient) { }
 
   private getOrderKey(orderDirection: string): string {

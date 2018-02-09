@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  mbsUrl: 'https://mbs.fedoraproject.org/module-build-service/1/',
+  kojiUrl: 'https://koji.fedoraproject.org/koji/'
 };
