@@ -53,6 +53,20 @@ export class ModulesComponent extends BaseListComponent implements OnInit {
     }
   }
 
+  getStateCssClass(module: MbsModuleShort): string {
+    switch(module.state_name) {
+      case 'ready': {
+        return 'text-success';
+      }
+      case 'failed': {
+        return 'text-danger';
+      }
+      default : {
+        return 'text-info';
+      }
+    }
+  }
+
   onScrollDown () {
     this.getModules();
   }

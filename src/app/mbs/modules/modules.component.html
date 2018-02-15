@@ -21,7 +21,7 @@
       <td scope="row">{{ module.stream }}</td>
       <td scope="row">{{ module.version }}</td>
       <td *ngIf="module.context !== undefined" scope="row" class="context">{{ module.context }}</td>
-      <td scope="row">{{ module.state_name }}</td>
+      <td class="{{ getStateCssClass(module) }}" scope="row">{{ module.state_name }}</td>
     </tr>
   </tbody>
 </table>
