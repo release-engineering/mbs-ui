@@ -1,6 +1,27 @@
-@media (min-width: 992px) {
+.navbar-brand span {
+    margin-left: 0.4em;
+}
+
+// Landscape phones and smaller
+@media (max-width: 767px) {
+    #logoTextShort {
+        display: inline;
+    }
+    #logoText {
+        display: None;
+    }
+}
+
+// Tablets and larger
+@media (min-width: 768px) {
     .navbar {
         padding-left: 10% !important;
         padding-right: 10% !important;
+    }
+    #logoTextShort {
+        display: None;
+    }
+    #logoText {
+        display: inline;
     }
 }
