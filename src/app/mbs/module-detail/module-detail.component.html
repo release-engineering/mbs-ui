@@ -27,6 +27,14 @@
     </thead>
     <tbody>
       <tr>
+        <td scope="row">Components</td>
+        <td scope="row">{{ num_built_components }}/{{ num_components }} complete</td>
+      </tr>
+      <tr *ngIf="module.context !== undefined">
+        <td scope="row">Context</td>
+        <td scope="row">{{ module.context }}</td>
+      </tr>
+      <tr>
         <td scope="row">ID</td>
         <td scope="row">{{ module.id }}</td>
       </tr>
@@ -59,28 +67,20 @@
         <td scope="row">{{ module.stream }}</td>
       </tr>
       <tr>
-        <td scope="row">Components</td>
-        <td scope="row">{{ num_built_components }}/{{ num_components }} complete</td>
-      </tr>
-      <tr>
-        <td scope="row">Time Submitted</td>
-        <td scope="row">{{ module.time_submitted }}</td>
+        <td scope="row">Time Completed</td>
+        <td scope="row">{{ module.time_completed }}</td>
       </tr>
       <tr>
         <td scope="row">Time Modifed</td>
         <td scope="row">{{ module.time_modified }}</td>
       </tr>
       <tr>
-        <td scope="row">Time Completed</td>
-        <td scope="row">{{ module.time_completed }}</td>
+        <td scope="row">Time Submitted</td>
+        <td scope="row">{{ module.time_submitted }}</td>
       </tr>
       <tr>
         <td scope="row">Version</td>
         <td scope="row">{{ module.version }}</td>
-      </tr>
-      <tr *ngIf="module.context !== undefined">
-        <td scope="row">Context</td>
-        <td scope="row">{{ module.context }}</td>
       </tr>
     </tbody>
   </table>
