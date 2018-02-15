@@ -52,7 +52,7 @@ ul.build-tracker {
         z-index: -1;
     }
 
-    // Landscape phones and larger
+    // Tablets and larger
     @media (min-width: 767px) {
         padding: 10px 0 80px 0;
         margin: 3rem 0 3rem 0;
@@ -91,7 +91,7 @@ ul.build-tracker {
 
 // Pulse the active icon
 @keyframes pulse {to {box-shadow: 0 0 0 15px rgba(204, 0, 0, 0);}}
-// Landscape phones and larger
+// Tablets and larger
 @media (min-width: 767px) {
     @keyframes pulse {to {box-shadow: 0 0 0 25px rgba(204, 0, 0, 0);}}
 }
