@@ -79,6 +79,10 @@
         <td scope="row">Version</td>
         <td scope="row">{{ module.version }}</td>
       </tr>
+      <tr *ngIf="module.context !== undefined">
+        <td scope="row">Context</td>
+        <td scope="row">{{ module.context }}</td>
+      </tr>
     </tbody>
   </table>
 </span>

@@ -4,12 +4,15 @@
 
 <table class="table table-responsive-sm table-hover table-bordered mbs-list-table" infinite-scroll (scrolled)="onScrollDown()">
   <thead>
-    <th *ngFor="let header of ['ID', 'Name', 'Stream', 'Version', 'State']" scope="col">
-      <a [routerLink]="['/modules', {'orderBy': header.toLowerCase(), 'orderDirection': getOrderDirection(header)}]"
-          [ngClass]="getArrowClass(header)">
-        {{ header }}
-      </a>
-    </th>
+    <ng-container *ngFor="let header of ['ID', 'Name', 'Stream', 'Version', 'Context', 'State']">
+      <th *ngIf="header !== 'Context' || (modules.length && modules[0].context !== undefined)"
+          [attr.id]="header.toLowerCase() + 'Header'" scope="col">
+        <a [routerLink]="['/modules', {'orderBy': header.toLowerCase(), 'orderDirection': getOrderDirection(header)}]"
+            [ngClass]="getArrowClass(header)">
+          {{ header }}
+        </a>
+      </th>
+    </ng-container>
   </thead>
   <tbody>
     <tr *ngFor="let module of modules">
@@ -17,6 +20,7 @@
       <td scope="row">{{ module.name }}</td>
       <td scope="row">{{ module.stream }}</td>
       <td scope="row">{{ module.version }}</td>
+      <td *ngIf="module.context !== undefined" scope="row" class="context">{{ module.context }}</td>
       <td scope="row">{{ module.state_name }}</td>
     </tr>
   </tbody>

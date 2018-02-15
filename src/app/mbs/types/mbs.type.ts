@@ -15,6 +15,7 @@ interface MbsApi {
 }
 
 export interface MbsModuleShort {
+    context?: string;
     id: number;
     name: string;
     state: number;

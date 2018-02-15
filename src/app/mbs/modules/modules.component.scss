@@ -3,7 +3,17 @@ table thead {
         width: 20%;
         white-space: nowrap;
     }
-    th:nth-child(2) {
-        width:40%;
+    #nameHeader {
+        width:30%;
+    }
+}
+
+// Landscape phones and smaller
+@media (max-width: 767px) {
+    table {
+        // Don't display the context column on larger screens
+        #contextHeader, td.context {
+            display: none;
+        }
     }
 }
