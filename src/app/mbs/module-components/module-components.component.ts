@@ -55,6 +55,20 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
     }
   }
 
+  getStateCssClass(component: MbsComponent): string {
+    switch(component.state_name) {
+      case 'COMPLETE':
+        return 'text-success';
+      case 'FAILED':
+        return 'text-danger';
+      case 'CANCELED':
+      case 'DELETED':
+        return 'text-warning'
+      default :
+        return 'text-info';
+    }
+  }
+
   onScrollDown () {
     this.getComponents();
   }
