@@ -4,13 +4,12 @@
   <h2 class="title">Module #{{ module.id }}</h2>
 
   <!-- Tracker if the build has failed -->
-  <ul *ngIf="module.state_name == 'failed' || module.state_name == 'garbage'" class="build-tracker">
-    <li class="build-tracker-failed">Init</li>
-    <li class="build-tracker-failed">Wait</li>
-    <li class="build-tracker-failed">Build</li>
-    <li class="build-tracker-failed">Done</li>
-    <li *ngIf="module.state_name == 'failed'" class="build-tracker-failed">Failed</li>
-    <li *ngIf="module.state_name == 'garbage'" class="build-tracker-failed">Garbage</li>
+  <ul *ngIf="module.state_name == 'failed' || module.state_name == 'garbage'" class="build-tracker build-tracker-failed">
+    <li>Init</li>
+    <li>Wait</li>
+    <li>Build</li>
+    <li>Done</li>
+    <li>{{ module.state_name.charAt(0).toUpperCase() + module.state_name.slice(1) }}</li>
   </ul>
   <!-- Tracker if the build has succeeded -->
   <ul *ngIf="module.state_name != 'failed' && module.state_name != 'garbage'" class="build-tracker">

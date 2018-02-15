@@ -25,7 +25,7 @@ ul.build-tracker {
         font-family: FontAwesome;
         content: '\f10c';
         font-size: 30px;
-        color: #cc0000;
+        color: #28a745;
         line-height: 0.8;
         // Hide the line behind it
         background-color: #ffffff;
@@ -80,11 +80,14 @@ ul.build-tracker {
     li.build-tracker-step-active:before {
         // Settings so that we can pulse the icon
         border-radius: 50%;
-        box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.7);
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
         animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
     }
+}
 
-    li.build-tracker-failed:before {
+ul.build-tracker-failed {
+    li:before {
+        color: #cc0000;
         content: '\f05c';
     }
 }
