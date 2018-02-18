@@ -1,0 +1,172 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: mbs-ui-template
+parameters:
+- name: NG_ENVIRONMENT
+  displayName: Angular Environment
+  description: Name of the Angular environment to build from
+  required: true
+- name: ROUTE_HOSTNAME
+  displayName: Route hostname/FQDN
+  description: Hostname/FQDN for the route to listen on
+  required: false
+objects:
+# The image stream for the S2I builder image
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: s2i-angular-httpd24
+    annotations:
+      openshift.io/display-name: Angular
+  spec:
+    tags:
+      - name: latest
+        annotations:
+          openshift.io/display-name: Angular
+          description: >-
+            Build and run Angular 2+ apps based on the official
+            centos/httpd-24-centos7 image. For more information about using this
+            builder image, see https://github.com/mprahl/s2i-angular-httpd24.
+          iconClass: icon-js
+          tags: 'builder,angular,javascript'
+          supports: 'angular'
+        from:
+          kind: DockerImage
+          name: 'mprahl/s2i-angular-httpd24:latest'
+# The image stream that will represent the built image. Without this, the build
+# will fail.
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: mbs-ui
+    name: mbs-ui
+  spec:
+    tags:
+    - from:
+        kind: DockerImage
+        name: mbs-ui:latest
+      name: latest
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: mbs-ui
+    name: mbs-ui
+    annotations:
+      template.alpha.openshift.io/wait-for-ready: "true"
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: mbs-ui:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: dev
+        uri: https://github.com/release-engineering/mbs-ui
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+        - name: NG_ENVIRONMENT
+          value: ${NG_ENVIRONMENT}
+        from:
+          kind: ImageStreamTag
+          name: s2i-angular-httpd24:latest
+      type: Source
+    triggers:
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      app: mbs-ui
+    name: mbs-ui
+    annotations:
+      template.alpha.openshift.io/wait-for-ready: "true"
+  spec:
+    replicas: 1
+    selector:
+      app: mbs-ui
+      deploymentconfig: mbs-ui
+    template:
+      metadata:
+        labels:
+          app: mbs-ui
+          deploymentconfig: mbs-ui
+      spec:
+        containers:
+        - image: mbs-ui
+          imagePullPolicy: Always
+          name: mbs-ui
+          ports:
+          - containerPort: 8443
+            protocol: TCP
+          - containerPort: 8080
+            protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /modules
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /modules
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 5
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - mbs-ui
+        from:
+          kind: ImageStreamTag
+          name: mbs-ui:latest
+      type: ImageChange
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: mbs-ui
+    name: mbs-ui
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    selector:
+      app: mbs-ui
+      deploymentconfig: mbs-ui
+- apiVersion: v1
+  kind: Route
+  metadata:
+    labels:
+      app: mbs-ui
+    name: mbs-ui
+  spec:
+    host: ${ROUTE_HOSTNAME}
+    port:
+      targetPort: 8080
+    to:
+      kind: Service
+      name: mbs-ui
