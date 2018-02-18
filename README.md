@@ -21,9 +21,9 @@ in the `dist/` directory.
 ## Deployment
 
 The recommended deployment method is OpenShift. The easiest way is to use the
-OpenShift template provided in `openshift/mbs_ui.yml` by running
-`oc new-app mbs_ui.yml -p NG_ENVIRONMENT=<environment_name>`. You can override
-the route's hostname/FQDN with the `ROUTE_HOSTNAME` parameter.
+OpenShift template provided in `openshift/mbs-ui-deployment-template.yaml` by
+running `oc new-app mbs-ui-deployment-template.yaml -p NG_ENVIRONMENT=<environment_name>`.
+You can override the route's hostname/FQDN with the `ROUTE_HOSTNAME` parameter.
 
 Alternatively, you can do the more manual approach with the following steps:
 * Add the S2I builder image for Angular apps with:
