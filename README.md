@@ -1,27 +1,36 @@
-# Mbs
+# Module Build Service User Interface (MBS-UI)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+A simple frontend to the Module Build Service written in Angular.
 
-## Development server
+## Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To setup a development environment, make sure you have `npm` installed.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Once npm is installed:
+* Run `npm install` to install the dev and production dependencies
+* Run `ng serve` to start the development server
+* In your browser, you can now navigate to `http://localhost:4200/`
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Although it's recommended to use OpenShift for builds and deployments, you can
+manaully build MBS-UI for production with
+`ng build --environment <environment_name>`. The build artifacts will be stored
+in the `dist/` directory.
 
-## Running unit tests
+## Deployment
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The recommended deployment method is OpenShift. The easiest way is to use the
+OpenShift template provided in `openshift/mbs_ui.yml` by running
+`oc new-app mbs_ui.yml -p NG_ENVIRONMENT=<environment_name>`. You can override
+the route's hostname/FQDN with the `ROUTE_HOSTNAME` parameter.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Alternatively, you can do the more manual approach with the following steps:
+* Add the S2I builder image for Angular apps with:
+  `oc create -f https://raw.githubusercontent.com/mprahl/s2i-angular-httpd24/master/s2i-angular-httpd24.yml`
+* Build and deploy the application with:
+  `oc new-app s2i-angular-httpd24~https://github.com/release-engineering/mbs-ui --build-env NG_ENVIRONMENT=<environment_name>`
+* Create a route with:
+  `oc expose svc/mbs-ui --port 8080`
+* Perform any additional configuration such as adding readiness and health
+  probes
