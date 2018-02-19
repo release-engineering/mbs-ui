@@ -1,6 +1,11 @@
 apiVersion: v1
 kind: Template
 metadata:
+  annotations:
+    openshift.io/display-name: MBS UI
+    description: A frontend to the Module Build Service (MBS)
+    iconClass: icon-js
+    tags: javscript
   name: mbs-ui-template
 parameters:
 - name: NG_ENVIRONMENT
