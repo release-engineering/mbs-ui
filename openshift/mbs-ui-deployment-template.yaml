@@ -121,7 +121,7 @@ objects:
               path: /modules
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 30
+            initialDelaySeconds: 5
             periodSeconds: 60
             timeoutSeconds: 5
           readinessProbe:
@@ -130,7 +130,7 @@ objects:
               path: /modules
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 30
+            initialDelaySeconds: 5
             periodSeconds: 60
             timeoutSeconds: 5
     triggers:
