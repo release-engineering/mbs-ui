@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { ModuleService } from 'mbs/services/module.service';
 import { MbsModule } from 'mbs/types/mbs.type';
+import { environment } from 'mbs/../../environments/environment';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
   interval: any;
   num_built_components: number;
   num_components: number;
+  readonly kojiUrl: string = environment.kojiUrl;
   constructor(private route: ActivatedRoute, private moduleService: ModuleService) { }
 
   ngOnInit() {

@@ -39,8 +39,22 @@
         <td scope="row">{{ module.id }}</td>
       </tr>
       <tr>
+        <td scope="row">Koji Build Tag</td>
+        <td scope="row">
+          <a *ngIf="module.koji_tag" target="_blank"
+              href="{{ kojiUrl + 'search?match=exact&type=tag&terms=' + module.koji_tag + '-build' }}">
+            {{ module.koji_tag + '-build' }}
+          </a>
+        </td>
+      </tr>
+      <tr>
         <td scope="row">Koji Tag</td>
-        <td scope="row">{{ module.koji_tag }}</td>
+        <td scope="row">
+          <a *ngIf="module.koji_tag" target="_blank"
+              href="{{ kojiUrl + 'search?match=exact&type=tag&terms=' + module.koji_tag }}">
+            {{ module.koji_tag }}
+          </a>
+        </td>
       </tr>
       <tr>
         <td scope="row">Name</td>
