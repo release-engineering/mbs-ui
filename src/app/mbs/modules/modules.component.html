@@ -4,15 +4,17 @@
 
 <table class="table table-responsive-sm table-hover table-bordered mbs-list-table" infinite-scroll (scrolled)="onScrollDown()">
   <thead>
-    <ng-container *ngFor="let header of ['ID', 'Name', 'Stream', 'Version', 'Context', 'State']">
-      <th *ngIf="header !== 'Context' || (modules.length && modules[0].context !== undefined)"
-          [attr.id]="header.toLowerCase() + 'Header'" scope="col">
-        <a [routerLink]="['/modules', {'orderBy': header.toLowerCase(), 'orderDirection': getOrderDirection(header)}]"
-            [ngClass]="getArrowClass(header)">
-          {{ header }}
-        </a>
-      </th>
-    </ng-container>
+    <tr>
+      <ng-container *ngFor="let header of ['ID', 'Name', 'Stream', 'Version', 'Context', 'State']">
+        <th *ngIf="header !== 'Context' || (modules.length && modules[0].context !== undefined)"
+            [attr.id]="header.toLowerCase() + 'Header'" scope="col">
+          <a [routerLink]="['/modules', {'orderBy': header.toLowerCase(), 'orderDirection': getOrderDirection(header)}]"
+              [ngClass]="getArrowClass(header)">
+            {{ header }}
+          </a>
+        </th>
+      </ng-container>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let module of modules">

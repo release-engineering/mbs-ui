@@ -4,13 +4,15 @@
 
 <table class="table table-responsive-sm table-hover table-bordered mbs-list-table" infinite-scroll (scrolled)="onScrollDown()">
   <thead>
-    <th *ngFor="let header of ['ID', 'Module Build', 'Package', 'Task ID', 'State']" scope="col">
-      <a *ngIf="header != 'Module Build'" [routerLink]="['/components', {'orderBy': header.toLowerCase().replace(' ', '_'), 'orderDirection': getOrderDirection(header)}]"
-          [ngClass]="getArrowClass(header)">
-        {{ header }}
-      </a>
-      <span *ngIf="header == 'Module Build'">{{ header }}</span>
-    </th>
+    <tr>
+      <th *ngFor="let header of ['ID', 'Module Build', 'Package', 'Task ID', 'State']" scope="col">
+        <a *ngIf="header != 'Module Build'" [routerLink]="['/components', {'orderBy': header.toLowerCase().replace(' ', '_'), 'orderDirection': getOrderDirection(header)}]"
+            [ngClass]="getArrowClass(header)">
+          {{ header }}
+        </a>
+        <span *ngIf="header == 'Module Build'">{{ header }}</span>
+      </th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let component of components">
