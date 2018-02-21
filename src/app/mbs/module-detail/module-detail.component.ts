@@ -57,4 +57,8 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
         )
     }
   }
+
+  getKojiTagUrl(tag: string): string {
+    return this.kojiUrl + 'search?match=exact&type=tag&terms=' + encodeURI(tag);
+  }
 }
