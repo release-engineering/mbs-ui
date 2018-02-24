@@ -2,6 +2,12 @@ table tbody td:first-child {
     width: 30%;
 }
 
+.timeValue {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    cursor: help;
+}
+
 ul.build-tracker {
     // Set the padding so the list takes up all the content in the DOM that
     // it graphically represents

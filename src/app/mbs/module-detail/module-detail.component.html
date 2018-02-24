@@ -91,17 +91,14 @@
         <td scope="row">Stream</td>
         <td scope="row">{{ module.stream }}</td>
       </tr>
-      <tr>
-        <td scope="row">Time Completed</td>
-        <td scope="row">{{ module.time_completed }}</td>
-      </tr>
-      <tr>
-        <td scope="row">Time Modifed</td>
-        <td scope="row">{{ module.time_modified }}</td>
-      </tr>
-      <tr>
-        <td scope="row">Time Submitted</td>
-        <td scope="row">{{ module.time_submitted }}</td>
+      <tr *ngFor="let time of ['time_completed', 'time_modified', 'time_submitted']">
+        <td scope="row">{{ time.replace('_', ' ') | titlecase }}</td>
+        <td scope="row">
+          <!-- Show in local time on hover in a tooltip -->
+          <span placement="top" ngbTooltip="{{ module[time] | date:'MMMM d, y, HH:mm:ss zzzz' }}" class="timeValue">
+              {{ module[time] | date:'MMMM d, y, HH:mm:ss':'+0000' }} UTC
+          </span>
+        </td>
       </tr>
       <tr>
         <td scope="row">Version</td>

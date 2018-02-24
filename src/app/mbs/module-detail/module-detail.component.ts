@@ -19,6 +19,7 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
   interval: any;
   num_built_components: number;
   num_components: number;
+  readonly dateTimeFormat: string = 'MMMM d, y, HH:mm:ss zzzz';
   readonly kojiUrl: string = environment.kojiUrl;
   readonly pdcApiUrl: string = environment.pdcApiUrl;
   constructor(private route: ActivatedRoute, private moduleService: ModuleService) { }
