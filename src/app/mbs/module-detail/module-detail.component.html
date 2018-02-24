@@ -67,7 +67,11 @@
       <tr>
         <td scope="row">PDC</td>
         <!-- The PDC entry likely only exists after the Koji tag is known -->
-        <td scope="row"><a *ngIf="module.koji_tag" target="_blank" href="{{ getPdcUrl() }}">PDC Entry</a></td>
+        <td scope="row">
+          <a *ngIf="module.koji_tag" target="_blank" href="{{ getPdcUrl() }}">
+            {{ [module.name, module.stream, module.version, module.context].join(':') }}
+          </a>
+        </td>
       </tr>
       <tr>
         <td scope="row">Rebuild Strategy</td>
