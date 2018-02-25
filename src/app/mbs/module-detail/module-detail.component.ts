@@ -4,7 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 
 import { ModuleService } from 'mbs/services/module.service';
-import { MbsModule } from 'mbs/types/mbs.type';
+import { MbsModule } from 'mbs/models/mbs.type';
 import { environment } from 'mbs/../../environments/environment';
 
 

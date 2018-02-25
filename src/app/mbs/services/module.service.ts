@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from 'mbs/../../environments/environment';
-import { MbsModulesShortApi, MbsModule, MbsComponentsApi, MbsComponent } from 'mbs/types/mbs.type';
+import { MbsModulesShortApi, MbsModule, MbsComponentsApi, MbsComponent } from 'mbs/models/mbs.type';
 
 
 @Injectable()

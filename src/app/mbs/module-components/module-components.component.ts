@@ -4,7 +4,7 @@ import { NgProgress } from 'ngx-progressbar';
 
 import { BaseListComponent } from 'mbs/base-components/base-list.component';
 import { ModuleService } from 'mbs/services/module.service';
-import { MbsComponent } from 'mbs/types/mbs.type';
+import { MbsComponent } from 'mbs/models/mbs.type';
 import { environment } from 'mbs/../../environments/environment';
 
 
