@@ -1,7 +1,7 @@
 interface MbsMetaApi {
     first: string;
     last: string;
-    next: string | undefined; 
+    next: string | undefined;
     page: number;
     pages: number;
     per_page: number;
@@ -47,7 +47,7 @@ export interface MbsComponent {
 }
 
 export interface MbsModulesShortApi extends MbsApi {
-    items: Array<MbsModuleShort>
+    items: Array<MbsModuleShort>;
 }
 
 export interface MbsComponentsApi extends MbsApi {

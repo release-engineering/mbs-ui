@@ -25,9 +25,9 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private moduleService: ModuleService) { }
 
   ngOnInit() {
-    this.getModule()
+    this.getModule();
     // Run it every 15 seconds
-    this.interval = setInterval(() => {this.getModule();}, 15000);
+    this.interval = setInterval(() => { this.getModule(); }, 15000);
   }
 
   ngOnDestroy() {
@@ -36,27 +36,27 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
 
   getModule(): void {
     // Don't reload the page when the build has failed or completed
-    if (this.module == null || (this.module.state_name != 'failed' && this.module.state_name != 'ready')) {
-      var moduleObservable: Observable<MbsModule> = this.route.paramMap.switchMap(
+    if (!this.module || (this.module.state_name !== 'failed' && this.module.state_name !== 'ready')) {
+      const moduleObservable: Observable<MbsModule> = this.route.paramMap.switchMap(
         (params: ParamMap) => this.moduleService.getModule(+params.get('id')));
-        moduleObservable.subscribe(
-          data => {
-            this.module = data;
-            var num_built_components: number = 0;
-            var num_components: number = 0;
-            for (var component in this.module.tasks.rpms) {
-              num_components += 1;
-              if (this.module.tasks.rpms[component].state == 1) {
-                num_built_components += 1;
-              }
+      moduleObservable.subscribe(
+        data => {
+          this.module = data;
+          let num_built_components = 0;
+          let num_components = 0;
+          for (const component of Object.keys(this.module.tasks.rpms)) {
+            num_components += 1;
+            if (this.module.tasks.rpms[component].state === 1) {
+              num_built_components += 1;
             }
-            this.num_built_components = num_built_components;
-            this.num_components = num_components;
-          },
-          error => {
-            console.log(error);
           }
-        )
+          this.num_built_components = num_built_components;
+          this.num_components = num_components;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 
@@ -72,10 +72,10 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
     } else if (this.pdcApiUrl.endsWith('/modules/')) {
       return (this.pdcApiUrl + '?name=' + encodeURI(this.module.name) + '&stream=' +
               encodeURI(this.module.stream) + '&version=' + encodeURI(this.module.version) +
-              '&context=' + encodeURI(this.module.context))
+              '&context=' + encodeURI(this.module.context));
     } else if (this.pdcApiUrl.endsWith('/unreleasedvariants/')) {
       return (this.pdcApiUrl + '?variant_name=' + encodeURI(this.module.name) + '&variant_version=' +
-              encodeURI(this.module.stream) + '&variant_release=' + encodeURI(this.module.version))
+              encodeURI(this.module.stream) + '&variant_release=' + encodeURI(this.module.version));
     }
 
     return '';

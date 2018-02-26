@@ -5,8 +5,8 @@ export class BaseListComponent {
   orderBy: string;
   orderDirection: string;
   currentPage: number;
-  loading: boolean = false;
-  exhausted: boolean = false;
+  loading = false;
+  exhausted = false;
 
   processRouteParams(params: ParamMap) {
     // TODO: Add validation here
@@ -23,15 +23,15 @@ export class BaseListComponent {
   }
 
   getOrderDirection(header): string {
-    if (header.toLowerCase().replace(' ', '_') == this.orderBy && this.orderDirection == 'desc') {
+    if (header.toLowerCase().replace(' ', '_') === this.orderBy && this.orderDirection === 'desc') {
         return 'asc';
     }
     return 'desc';
   }
 
   getArrowClass(header: string): string {
-    if (header.toLowerCase().replace(' ', '_') == this.orderBy) {
-      if (this.orderDirection == 'asc') {
+    if (header.toLowerCase().replace(' ', '_') === this.orderBy) {
+      if (this.orderDirection === 'asc') {
         return 'orderAsc';
       } else {
         return 'orderDesc';
