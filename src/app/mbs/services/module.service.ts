@@ -9,11 +9,11 @@ import { MbsModulesShortApi, MbsModule, MbsComponentsApi, MbsComponent } from 'm
 @Injectable()
 export class ModuleService {
 
-  readonly mbsUrl: string = environment.mbsUrl
+  readonly mbsUrl: string = environment.mbsUrl;
   constructor(private http: HttpClient) { }
 
   private getOrderKey(orderDirection: string): string {
-    if (orderDirection == 'desc') {
+    if (orderDirection === 'desc') {
       return 'order_desc_by';
     } else {
       return 'order_by';
@@ -21,8 +21,8 @@ export class ModuleService {
   }
 
   getModules(page: number = 1, orderBy: string = 'id', orderDirection: string = 'desc'): Observable<MbsModulesShortApi> {
-    let orderKey = this.getOrderKey(orderDirection);
-    let url = this.mbsUrl + 'module-builds/?short=true&per_page=40&page=' + page + '&' + orderKey + '=' + orderBy;
+    const orderKey = this.getOrderKey(orderDirection);
+    const url = this.mbsUrl + 'module-builds/?short=true&per_page=40&page=' + page + '&' + orderKey + '=' + orderBy;
     return this.http.get<MbsModulesShortApi>(url);
   }
 
@@ -31,8 +31,8 @@ export class ModuleService {
   }
 
   getComponents(page: number = 1, orderBy: string = 'id', orderDirection: string = 'desc'): Observable<MbsComponentsApi> {
-    let orderKey = this.getOrderKey(orderDirection);
-    let url = this.mbsUrl + 'component-builds/?per_page=40&page=' + page + '&' + orderKey + '=' + orderBy;
+    const orderKey = this.getOrderKey(orderDirection);
+    const url = this.mbsUrl + 'component-builds/?per_page=40&page=' + page + '&' + orderKey + '=' + orderBy;
     return this.http.get<MbsComponentsApi>(url);
   }
 

@@ -21,7 +21,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
   constructor(private router: Router,
               private route: ActivatedRoute,
               public ngProgress: NgProgress,
-              private moduleService: ModuleService) {super();}
+              private moduleService: ModuleService) { super(); }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -30,7 +30,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
       this.exhausted = false;
       this.currentPage = 1;
       this.getComponents();
-    })
+    });
   }
 
   getComponents(): void {
@@ -56,14 +56,14 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
   }
 
   getStateCssClass(component: MbsComponent): string {
-    switch(component.state_name) {
+    switch (component.state_name) {
       case 'COMPLETE':
         return 'text-success';
       case 'FAILED':
         return 'text-danger';
       case 'CANCELED':
       case 'DELETED':
-        return 'text-warning'
+        return 'text-warning';
       default :
         return 'text-info';
     }

@@ -19,7 +19,7 @@ export class ModulesComponent extends BaseListComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               public ngProgress: NgProgress,
-              private moduleService: ModuleService) {super();}
+              private moduleService: ModuleService) { super(); }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -28,7 +28,7 @@ export class ModulesComponent extends BaseListComponent implements OnInit {
       this.exhausted = false;
       this.currentPage = 1;
       this.getModules();
-    })
+    });
   }
 
   getModules(): void {
@@ -54,7 +54,7 @@ export class ModulesComponent extends BaseListComponent implements OnInit {
   }
 
   getStateCssClass(module: MbsModuleShort): string {
-    switch(module.state_name) {
+    switch (module.state_name) {
       case 'ready': {
         return 'text-success';
       }
