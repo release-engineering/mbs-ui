@@ -9,7 +9,7 @@ import { MbsModulesShortApi, MbsModule, MbsComponentsApi, MbsComponent } from 'm
 @Injectable()
 export class ModuleService {
 
-  private readonly mbsUrl: string = environment.mbsUrl
+  readonly mbsUrl: string = environment.mbsUrl
   constructor(private http: HttpClient) { }
 
   private getOrderKey(orderDirection: string): string {
