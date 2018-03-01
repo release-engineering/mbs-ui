@@ -25,7 +25,9 @@
         </a>
       </td>
       <td class="{{ getStateCssClass(component) }}" scope="row">
-        {{ component.state_name.charAt(0) + component.state_name.toLowerCase().slice(1) }}
+        <ng-container *ngIf="component.state_name">
+          {{ component.state_name.charAt(0) + component.state_name.toLowerCase().slice(1) }}
+        </ng-container>
       </td>
     </tr>
   </tbody>
