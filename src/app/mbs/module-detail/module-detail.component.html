@@ -95,7 +95,7 @@
         <td scope="row">{{ time.replace('_', ' ') | titlecase }}</td>
         <td scope="row">
           <!-- Show in local time on hover in a tooltip -->
-          <span placement="top" ngbTooltip="{{ module[time] | date:'MMMM d, y, HH:mm:ss zzzz' }}" class="timeValue">
+          <span *ngIf="module[time]" placement="top" ngbTooltip="{{ module[time] | date:'MMMM d, y, HH:mm:ss zzzz' }}" class="timeValue">
               {{ module[time] | date:'MMMM d, y, HH:mm:ss':'+0000' }} UTC
           </span>
         </td>
