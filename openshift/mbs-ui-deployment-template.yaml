@@ -26,11 +26,11 @@ objects:
       openshift.io/display-name: Angular
   spec:
     tags:
-      - name: latest
+      - name: angular5
         annotations:
           openshift.io/display-name: Angular
           description: >-
-            Build and run Angular 2+ apps based on the official
+            Build and run Angular 2-5 apps based on the official
             centos/httpd-24-centos7 image. For more information about using this
             builder image, see https://github.com/mprahl/s2i-angular-httpd24.
           iconClass: icon-js
@@ -38,7 +38,7 @@ objects:
           supports: 'angular'
         from:
           kind: DockerImage
-          name: 'mprahl/s2i-angular-httpd24:latest'
+          name: 'mprahl/s2i-angular-httpd24:angular5'
 # The image stream that will represent the built image. Without this, the build
 # will fail.
 - apiVersion: v1
@@ -81,7 +81,7 @@ objects:
           value: ${NG_ENVIRONMENT}
         from:
           kind: ImageStreamTag
-          name: s2i-angular-httpd24:latest
+          name: s2i-angular-httpd24:angular5
       type: Source
     triggers:
     - type: ConfigChange
