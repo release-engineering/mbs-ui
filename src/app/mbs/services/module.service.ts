@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
-import { environment } from 'mbs/../../environments/environment';
-import { MbsModulesShortApi, MbsModule, MbsComponentsApi, MbsComponent } from 'mbs/models/mbs.type';
+import { environment } from '../../../environments/environment';
+import { MbsModulesShortApi, MbsModule, MbsComponentsApi, MbsComponent } from '../models/mbs.type';
 
 
 @Injectable()

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { NgProgress } from 'ngx-progressbar';
 
-import { BaseListComponent } from 'mbs/base-components/base-list.component';
-import { ModuleService } from 'mbs/services/module.service';
-import { MbsComponent } from 'mbs/models/mbs.type';
-import { environment } from 'mbs/../../environments/environment';
+import { BaseListComponent } from '../base-components/base-list.component';
+import { ModuleService } from '../services/module.service';
+import { MbsComponent } from '../models/mbs.type';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -18,9 +17,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
   readonly kojiUrl: string = environment.kojiUrl;
   components: Array<MbsComponent> = [];
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              public ngProgress: NgProgress,
+  constructor(private route: ActivatedRoute,
               private moduleService: ModuleService) { super(); }
 
   ngOnInit() {
@@ -46,7 +43,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
           }
         },
         error => {
-          console.log(error);
+          console.error(error);
         },
         () => {
           this.loading = false;

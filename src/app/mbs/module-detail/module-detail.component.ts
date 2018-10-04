@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
-import { ModuleService } from 'mbs/services/module.service';
-import { MbsModule } from 'mbs/models/mbs.type';
-import { environment } from 'mbs/../../environments/environment';
+import { ModuleService } from '../services/module.service';
+import { MbsModule } from '../models/mbs.type';
+import { environment } from '..//../../environments/environment';
 
 
 @Component({
@@ -37,8 +37,8 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
   getModule(): void {
     // Don't reload the page when the build has failed or completed
     if (!this.module || (this.module.state_name !== 'failed' && this.module.state_name !== 'ready')) {
-      const moduleObservable: Observable<MbsModule> = this.route.paramMap.switchMap(
-        (params: ParamMap) => this.moduleService.getModule(+params.get('id')));
+      const moduleObservable: Observable<MbsModule> = this.route.paramMap.pipe(switchMap(
+        (params: ParamMap) => this.moduleService.getModule(+params.get('id'))));
       moduleObservable.subscribe(
         data => {
           this.module = data;
@@ -54,7 +54,7 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
           this.num_components = num_components;
         },
         error => {
-          console.log(error);
+          console.error(error);
         }
       );
     }

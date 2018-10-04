@@ -6,14 +6,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
-import { AppRoutingModule } from 'app-routing.module';
-import { AppComponent } from 'app.component';
-import { ModulesComponent } from 'mbs/modules/modules.component';
-import { ModuleService } from 'mbs/services/module.service';
-import { ModuleComponentsComponent } from 'mbs/module-components/module-components.component';
-import { ModuleDetailComponent } from 'mbs/module-detail/module-detail.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ModulesComponent } from './mbs/modules/modules.component';
+import { ModuleService } from './mbs/services/module.service';
+import { ModuleComponentsComponent } from './mbs/module-components/module-components.component';
+import { ModuleDetailComponent } from './mbs/module-detail/module-detail.component';
 
 
 @NgModule({
@@ -30,11 +31,11 @@ import { ModuleDetailComponent } from 'mbs/module-detail/module-detail.component
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     InfiniteScrollModule,
-    NgProgressModule
+    NgProgressModule.forRoot(),
+    NgProgressHttpModule.forRoot()
   ],
   providers: [
-    ModuleService,
-    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
+    ModuleService
   ],
   bootstrap: [AppComponent]
 })

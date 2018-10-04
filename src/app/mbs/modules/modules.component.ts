@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { NgProgress } from 'ngx-progressbar';
 
-import { BaseListComponent } from 'mbs/base-components/base-list.component';
-import { ModuleService } from 'mbs/services/module.service';
-import { MbsModuleShort } from 'mbs/models/mbs.type';
+import { BaseListComponent } from '../base-components/base-list.component';
+import { ModuleService } from '../services/module.service';
+import { MbsModuleShort } from '../models/mbs.type';
 
 
 @Component({
@@ -16,9 +15,7 @@ export class ModulesComponent extends BaseListComponent implements OnInit {
 
   modules: Array<MbsModuleShort>;
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              public ngProgress: NgProgress,
+  constructor(private route: ActivatedRoute,
               private moduleService: ModuleService) { super(); }
 
   ngOnInit() {
@@ -44,7 +41,7 @@ export class ModulesComponent extends BaseListComponent implements OnInit {
           }
         },
         error => {
-          console.log(error);
+          console.error(error);
         },
         () => {
           this.loading = false;
