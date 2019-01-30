@@ -21,7 +21,6 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
   num_components: number;
   readonly dateTimeFormat: string = 'MMMM d, y, HH:mm:ss zzzz';
   readonly kojiUrl: string = environment.kojiUrl;
-  readonly pdcApiUrl: string = environment.pdcApiUrl;
   constructor(private route: ActivatedRoute, private moduleService: ModuleService) { }
 
   ngOnInit() {
@@ -62,22 +61,5 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
 
   getKojiTagUrl(tag: string): string {
     return this.kojiUrl + 'search?match=exact&type=tag&terms=' + encodeURI(tag);
-  }
-
-  getPdcUrl(): string {
-    // We can't use the uid/variant_uid field because the field's usage has
-    // changed over time and it was never backported
-    if (!this.module) {
-      return '';
-    } else if (this.pdcApiUrl.endsWith('/modules/')) {
-      return (this.pdcApiUrl + '?name=' + encodeURI(this.module.name) + '&stream=' +
-              encodeURI(this.module.stream) + '&version=' + encodeURI(this.module.version) +
-              '&context=' + encodeURI(this.module.context));
-    } else if (this.pdcApiUrl.endsWith('/unreleasedvariants/')) {
-      return (this.pdcApiUrl + '?variant_name=' + encodeURI(this.module.name) + '&variant_version=' +
-              encodeURI(this.module.stream) + '&variant_release=' + encodeURI(this.module.version));
-    }
-
-    return '';
   }
 }

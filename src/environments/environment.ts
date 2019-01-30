@@ -6,6 +6,5 @@
 export const environment = {
   production: false,
   mbsUrl: 'https://mbs.fedoraproject.org/module-build-service/1/',
-  kojiUrl: 'https://koji.fedoraproject.org/koji/',
-  pdcApiUrl: 'https://pdc.fedoraproject.org/rest_api/v1/modules/'
+  kojiUrl: 'https://koji.fedoraproject.org/koji/'
 };
