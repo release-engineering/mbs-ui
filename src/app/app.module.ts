@@ -31,8 +31,8 @@ import { ModuleDetailComponent } from './mbs/module-detail/module-detail.compone
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     InfiniteScrollModule,
-    NgProgressModule.forRoot(),
-    NgProgressHttpModule.forRoot()
+    NgProgressModule,
+    NgProgressHttpModule
   ],
   providers: [
     ModuleService
