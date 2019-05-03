@@ -28,7 +28,11 @@
     <tbody>
       <tr>
         <td scope="row">Components</td>
-        <td scope="row">{{ num_built_components }}/{{ num_components }} complete</td>
+        <td scope="row">
+          <a [routerLink]="['/module', module.id, 'components']">
+            {{ num_built_components }}/{{ num_components }} complete
+          </a>
+	</td>
       </tr>
       <tr>
         <td scope="row">Context</td>
