@@ -16,10 +16,15 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
 
   readonly kojiUrl: string = environment.kojiUrl;
   components: Array<MbsComponent> = [];
-  moduleId = 0;
+  moduleID: number;
 
-  constructor(private route: ActivatedRoute,
-              private moduleService: ModuleService) { super(); }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private moduleService: ModuleService
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -27,7 +32,17 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
       this.components = [];
       this.exhausted = false;
       this.currentPage = 1;
-      this.moduleId = this.route.snapshot.params.id;
+      const routeParams = this.route.snapshot.params;
+      let moduleID = null;
+      if (routeParams.id) {
+        moduleID = parseInt(routeParams.id, 10);
+        if (isNaN(moduleID)) {
+          moduleID = null;
+          // Redirect to /components if moduleID is not a number
+          this.router.navigate(['/components']);
+        }
+      }
+      this.moduleID = moduleID;
       this.getComponents();
     });
   }
@@ -35,7 +50,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
   getComponents(): void {
     if (!this.exhausted && !this.loading) {
       this.loading = true;
-      this.moduleService.getComponents(this.currentPage, this.orderBy, this.orderDirection, this.moduleId).subscribe(
+      this.moduleService.getComponents(this.currentPage, this.orderBy, this.orderDirection, this.moduleID).subscribe(
         data => {
           if (data.items.length) {
             this.components = this.components.concat(data.items);

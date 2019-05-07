@@ -30,12 +30,12 @@ export class ModuleService {
     return this.http.get<MbsModule>(this.mbsUrl + 'module-builds/' + id);
   }
 
-  getComponents(page: number = 1, orderBy: string = 'id', orderDirection: string = 'desc', moduleId: number = 0):
+  getComponents(page: number = 1, orderBy: string = 'id', orderDirection: string = 'desc', moduleID: number = null):
       Observable<MbsComponentsApi> {
     const orderKey = this.getOrderKey(orderDirection);
-    let url = this.mbsUrl + 'component-builds/?per_page=40&page=' + page + '&' + orderKey + '=' + orderBy;
-    if (moduleId > 0) {
-      url = url + '&module_id=' + moduleId;
+    let url = `${this.mbsUrl}component-builds/?per_page=40&page=${page}&orderKey=${orderBy}`;
+    if (moduleID !== null) {
+      url += `&module_id=${moduleID}`;
     }
     return this.http.get<MbsComponentsApi>(url);
   }
