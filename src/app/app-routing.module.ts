@@ -21,6 +21,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'module/:id/components',
+    component: ModuleComponentsComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '',
     redirectTo: '/modules',
     pathMatch: 'full'

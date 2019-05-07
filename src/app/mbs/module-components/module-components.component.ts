@@ -16,6 +16,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
 
   readonly kojiUrl: string = environment.kojiUrl;
   components: Array<MbsComponent> = [];
+  moduleId = 0;
 
   constructor(private route: ActivatedRoute,
               private moduleService: ModuleService) { super(); }
@@ -26,6 +27,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
       this.components = [];
       this.exhausted = false;
       this.currentPage = 1;
+      this.moduleId = this.route.snapshot.params.id;
       this.getComponents();
     });
   }
@@ -33,7 +35,7 @@ export class ModuleComponentsComponent extends BaseListComponent implements OnIn
   getComponents(): void {
     if (!this.exhausted && !this.loading) {
       this.loading = true;
-      this.moduleService.getComponents(this.currentPage, this.orderBy, this.orderDirection).subscribe(
+      this.moduleService.getComponents(this.currentPage, this.orderBy, this.orderDirection, this.moduleId).subscribe(
         data => {
           if (data.items.length) {
             this.components = this.components.concat(data.items);
