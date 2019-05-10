@@ -3,7 +3,7 @@
 <table class="table table-responsive-sm table-hover table-bordered mbs-list-table" infinite-scroll (scrolled)="onScrollDown()">
   <thead>
     <tr>
-      <th *ngFor="let header of ['ID', 'Name', 'Stream', 'Version', 'Context', 'State']"
+      <th *ngFor="let header of ['ID', 'Name', 'Stream', 'Version', 'Context', 'Scratch', 'State']"
           [attr.id]="header.toLowerCase() + 'Header'" scope="col">
         <a *ngIf="header != 'Context'" [routerLink]="['/modules', {'orderBy': header.toLowerCase(), 'orderDirection': getOrderDirection(header)}]"
             [ngClass]="getArrowClass(header)">
@@ -22,6 +22,7 @@
       <td scope="row">{{ module.stream }}</td>
       <td scope="row">{{ module.version }}</td>
       <td *ngIf="module.context !== undefined" scope="row" class="context">{{ module.context }}</td>
+      <td scope="row">{{ module.scratch ? 'Yes' : 'No' }}</td>
       <td class="{{ getStateCssClass(module) }}" scope="row">
         {{ module.state_name.toUpperCase().charAt(0) + module.state_name.slice(1) }}
       </td>
