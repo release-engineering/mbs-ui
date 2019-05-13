@@ -18,6 +18,7 @@ export interface MbsModuleShort {
     context?: string;
     id: number;
     name: string;
+    scratch?: boolean;
     state: number;
     state_name: string;
     stream: string;

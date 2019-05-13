@@ -18,7 +18,7 @@
   <tbody>
     <tr *ngFor="let module of modules">
       <td scope="row"><a [routerLink]="['/module', module.id]">{{ module.id }}</a></td>
-      <td scope="row">{{ module.name }}</td>
+      <td scope="row">{{ module.name + (module.scratch ? ' (scratch)' : '') }}</td>
       <td scope="row">{{ module.stream }}</td>
       <td scope="row">{{ module.version }}</td>
       <td *ngIf="module.context !== undefined" scope="row" class="context">{{ module.context }}</td>
