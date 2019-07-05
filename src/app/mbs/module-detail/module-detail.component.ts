@@ -60,6 +60,7 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
   }
 
   getKojiTagUrl(tag: string): string {
-    return this.kojiUrl + 'search?match=exact&type=tag&terms=' + encodeURI(tag);
+    // encodeURI doesn't convert plus signs to $%2B, so this does this manually
+    return `${this.kojiUrl}search?match=exact&type=tag&terms=${encodeURI(tag).replace('+', '%2B')}`;
   }
 }
