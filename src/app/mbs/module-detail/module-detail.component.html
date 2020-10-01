@@ -108,6 +108,14 @@
         <td scope="row">Version</td>
         <td scope="row">{{ module.version }}</td>
       </tr>
+      <tr>
+        <td scope="row">MBS JSON</td>
+        <td scope="row">
+          <a *ngIf="module.id" target="_blank" href="{{ module.mbsUrl + 'module-builds/' + module.id }}">
+            {{ module.id + ' json' }}
+          </a>
+        </td>
+      </tr>
     </tbody>
   </table>
 </span>
