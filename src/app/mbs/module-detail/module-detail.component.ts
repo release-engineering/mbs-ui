@@ -21,6 +21,7 @@ export class ModuleDetailComponent implements OnInit, OnDestroy {
   num_components: number;
   readonly dateTimeFormat: string = 'MMMM d, y, HH:mm:ss zzzz';
   readonly kojiUrl: string = environment.kojiUrl;
+  readonly mbsUrl: string = environment.mbsUrl;
   constructor(private route: ActivatedRoute, private moduleService: ModuleService) { }
 
   ngOnInit() {
